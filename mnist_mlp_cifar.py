@@ -11,9 +11,9 @@ batch_size = 128
 # batch_size = 256
 # batch_size = 512
 num_classes = 10
-# epochs = 20
+epochs = 20
 # epochs = 10
-epochs = 100
+# epochs = 100
 
 # the data, shuffled and split between train and test sets
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
@@ -39,9 +39,9 @@ model.add(Dense(10, activation='softmax'))
 
 # no dropout
 
-# model.add(Dense(512, activation='relu', input_shape=(784,)))
-# model.add(Dense(512, activation='relu'))
-# model.add(Dense(10, activation='softmax'))
+model.add(Dense(512, activation='relu', input_shape=(784,)))
+model.add(Dense(512, activation='relu'))
+model.add(Dense(10, activation='softmax'))
 
 # l1
 
