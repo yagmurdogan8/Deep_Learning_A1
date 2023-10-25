@@ -31,6 +31,12 @@ model.add(Dropout(0.2))
 model.add(Dense(512, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(10, activation='softmax'))
+# model.add(Dropout(0.2))
+# model.add(Dense(10, activation='tanh'))
+# model.add(Dropout(0.2))
+# model.add(Dense(10, activation='sigmoid'))
+# model.add(Dropout(0.2))
+# model.add(Dense(10, activation='gelu'))
 
 model.summary()
 
