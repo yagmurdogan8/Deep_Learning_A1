@@ -52,30 +52,35 @@ model = Sequential()
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
 # model.add(Dense(512, activation='relu', kernel_regularizer=reg.l2(0.01)))
 # model.add(Dense(10, activation='softmax'))
-
+#
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
 # model.add(Dense(512, activation='relu', kernel_regularizer=reg.l2(0.1)))
 # model.add(Dense(10, activation='softmax'))
-
-model.add(Dense(512, activation='relu', input_shape=(784,)))
-model.add(Dense(512, activation='relu', kernel_regularizer=reg.l2(0.005)))
-model.add(Dense(10, activation='softmax'))
+#
+# model.add(Dense(512, activation='relu', input_shape=(784,)))
+# model.add(Dense(512, activation='relu', kernel_regularizer=reg.l2(0.005)))
+# model.add(Dense(10, activation='softmax'))
 
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
 # model.add(Dropout(0.4))
 # model.add(Dense(512, activation='relu'))
 # model.add(Dropout(0.4))
 # model.add(Dense(10, activation='softmax'))
+#
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
 # model.add(Dropout(0.8))
 # model.add(Dense(512, activation='relu'))
 # model.add(Dropout(0.8))
 # model.add(Dense(10, activation='softmax'))
 
+
+# functions
 # model.add(Dropout(0.2))
 # model.add(Dense(10, activation='tanh'))
+#
 # model.add(Dropout(0.2))
 # model.add(Dense(10, activation='sigmoid'))
+#
 # model.add(Dropout(0.2))
 # model.add(Dense(10, activation='gelu'))
 
