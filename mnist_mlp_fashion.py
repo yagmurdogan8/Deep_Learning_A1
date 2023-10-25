@@ -4,6 +4,7 @@ from keras.datasets import fashion_mnist
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 import keras.optimizers as opt
+import keras.regularizers as reg
 
 batch_size = 128
 num_classes = 10
@@ -26,10 +27,14 @@ y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
 model = Sequential()
+# model.add(Dense(512, activation='relu', input_shape=(784,)))
+# model.add(Dropout(0.2))
+# model.add(Dense(512, activation='relu'))
+# model.add(Dropout(0.2))
+# model.add(Dense(10, activation='softmax'))
+
 model.add(Dense(512, activation='relu', input_shape=(784,)))
-model.add(Dropout(0.2))
-model.add(Dense(512, activation='relu'))
-model.add(Dropout(0.2))
+model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.01)))
 model.add(Dense(10, activation='softmax'))
 
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
