@@ -9,6 +9,8 @@ import keras.regularizers as reg
 batch_size = 128
 num_classes = 10
 epochs = 20
+# epochs = 10
+# epochs = 100
 
 # the data, shuffled and split between train and test sets
 (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
@@ -27,11 +29,11 @@ y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
 model = Sequential()
-# model.add(Dense(512, activation='relu', input_shape=(784,)))
-# model.add(Dropout(0.2))
-# model.add(Dense(512, activation='relu'))
-# model.add(Dropout(0.2))
-# model.add(Dense(10, activation='softmax'))
+model.add(Dense(512, activation='relu', input_shape=(784,)))
+model.add(Dropout(0.2))
+model.add(Dense(512, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(10, activation='softmax'))
 
 # no dropout
 
