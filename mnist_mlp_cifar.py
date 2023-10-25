@@ -12,8 +12,8 @@ batch_size = 128
 # batch_size = 512
 num_classes = 10
 # epochs = 20
-epochs = 10
-# epochs = 100
+# epochs = 10
+epochs = 100
 
 # the data, shuffled and split between train and test sets
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
