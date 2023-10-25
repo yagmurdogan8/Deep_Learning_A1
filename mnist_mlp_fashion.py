@@ -33,6 +33,12 @@ model = Sequential()
 # model.add(Dropout(0.2))
 # model.add(Dense(10, activation='softmax'))
 
+# no dropout
+
+# model.add(Dense(512, activation='relu', input_shape=(784,)))
+# model.add(Dense(512, activation='relu'))
+# model.add(Dense(10, activation='softmax'))
+
 # l1
 
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
@@ -73,8 +79,7 @@ model = Sequential()
 # model.add(Dropout(0.8))
 # model.add(Dense(10, activation='softmax'))
 
-
-# functions
+# activation functions
 # model.add(Dropout(0.2))
 # model.add(Dense(10, activation='tanh'))
 #
