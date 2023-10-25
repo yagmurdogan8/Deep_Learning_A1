@@ -3,7 +3,7 @@ import keras
 from keras.datasets import fashion_mnist
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
-from keras.optimizers import RMSprop
+import keras.optimizers as opt
 
 batch_size = 128
 num_classes = 10
@@ -38,11 +38,25 @@ model.add(Dense(10, activation='softmax'))
 # model.add(Dropout(0.2))
 # model.add(Dense(10, activation='gelu'))
 
+
 model.summary()
 
 model.compile(loss='categorical_crossentropy',
-              optimizer=RMSprop(),
+              optimizer=opt.RMSprop(),
               metrics=['accuracy'])
+
+# model.compile(loss='categorical_crossentropy',
+#               optimizer=opt.SGD(),
+#               metrics=['accuracy'])
+
+# model.compile(loss='categorical_crossentropy',
+#               optimizer=opt.Nadam(),
+#               metrics=['accuracy'])
+
+# model.compile(loss='categorical_crossentropy',
+#               optimizer=opt.Adam(),
+#               metrics=['accuracy'])
+
 
 history = model.fit(x_train, y_train,
                     batch_size=batch_size, epochs=epochs,
