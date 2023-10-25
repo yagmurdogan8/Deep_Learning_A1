@@ -7,12 +7,12 @@ import keras.optimizers as opt
 import keras.regularizers as reg
 from keras.src.layers import Flatten
 
-# batch_size = 128
+batch_size = 128
 # batch_size = 256
-batch_size = 512
+# batch_size = 512
 num_classes = 10
-epochs = 20
-# epochs = 10
+# epochs = 20
+epochs = 10
 # epochs = 100
 
 # the data, shuffled and split between train and test sets
