@@ -33,6 +33,8 @@ model = Sequential()
 # model.add(Dropout(0.2))
 # model.add(Dense(10, activation='softmax'))
 
+# l1
+
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
 # model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.01)))
 # model.add(Dense(10, activation='softmax'))
@@ -45,8 +47,10 @@ model = Sequential()
 # model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.005)))
 # model.add(Dense(10, activation='softmax'))
 
+# l2
+
 model.add(Dense(512, activation='relu', input_shape=(784,)))
-model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.01)))
+model.add(Dense(512, activation='relu', kernel_regularizer=reg.l2(0.01)))
 model.add(Dense(10, activation='softmax'))
 
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
