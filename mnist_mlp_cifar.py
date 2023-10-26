@@ -45,13 +45,13 @@ model.add(Dense(10, activation='softmax'))
 
 # l1
 
-model.add(Dense(512, activation='relu', input_shape=(784,)))
-model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.01)))
-model.add(Dense(10, activation='softmax'))
-
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
-# model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.1)))
+# model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.01)))
 # model.add(Dense(10, activation='softmax'))
+#
+model.add(Dense(512, activation='relu', input_shape=(784,)))
+model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.1)))
+model.add(Dense(10, activation='softmax'))
 #
 # model.add(Dense(512, activation='relu', input_shape=(784,)))
 # model.add(Dense(512, activation='relu', kernel_regularizer=reg.l1(0.005)))
