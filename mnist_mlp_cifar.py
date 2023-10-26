@@ -96,17 +96,17 @@ model.add(Dense(10, activation='softmax'))
 
 model.summary()
 
-model.compile(loss='categorical_crossentropy',
-              optimizer=opt.RMSprop(),
-              metrics=['accuracy'])
+# model.compile(loss='categorical_crossentropy',
+#               optimizer=opt.RMSprop(),
+#               metrics=['accuracy'])
 
 # model.compile(loss='categorical_crossentropy',
 #               optimizer=opt.SGD(),
 #               metrics=['accuracy'])
 
-# model.compile(loss='categorical_crossentropy',
-#               optimizer=opt.Nadam(),
-#               metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy',
+              optimizer=opt.Nadam(),
+              metrics=['accuracy'])
 
 # model.compile(loss='categorical_crossentropy',
 #               optimizer=opt.Adam(),
