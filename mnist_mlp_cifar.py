@@ -104,13 +104,13 @@ model.summary()
 #               optimizer=opt.SGD(),
 #               metrics=['accuracy'])
 
-model.compile(loss='categorical_crossentropy',
-              optimizer=opt.Nadam(),
-              metrics=['accuracy'])
-
 # model.compile(loss='categorical_crossentropy',
-#               optimizer=opt.Adam(),
+#               optimizer=opt.Nadam(),
 #               metrics=['accuracy'])
+
+model.compile(loss='categorical_crossentropy',
+              optimizer=opt.Adam(),
+              metrics=['accuracy'])
 
 
 history = model.fit(x_train, y_train,
