@@ -56,17 +56,17 @@ model.add(Dense(num_classes, activation='softmax'))
 # model.add(Dense(num_classes, activation='gelu'))
 # model.add(Dropout(0.5))
 # model.add(Dense(num_classes, activation='tanh'))
-model.add(Dropout(0.5))
-model.add(Dense(num_classes, activation='sigmoid'))
+# model.add(Dropout(0.5))
+# model.add(Dense(num_classes, activation='sigmoid'))
 
-model.compile(loss=keras.losses.categorical_crossentropy,
-              optimizer=keras.optimizers.Adadelta(),
-              metrics=['accuracy'])
+# model.compile(loss=keras.losses.categorical_crossentropy,
+#               optimizer=keras.optimizers.Adadelta(),
+#               metrics=['accuracy'])
 
 # model.compile(loss=keras.losses.categorical_crossentropy,
 #               optimizer=keras.optimizers.Adam(),
 #               metrics=['accuracy'])
-#
+
 # model.compile(loss=keras.losses.categorical_crossentropy,
 #               optimizer=keras.optimizers.SGD(),
 #               metrics=['accuracy'])
