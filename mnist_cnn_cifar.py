@@ -4,14 +4,14 @@ from keras.datasets import cifar10
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
-from keras import backend as K
+# from keras import backend as K
 
-# batch_size = 128
-batch_size = 256
+batch_size = 128
+# batch_size = 256
 # batch_size = 512
 num_classes = 10
-epochs = 12
-# epochs = 20
+# epochs = 12
+epochs = 20
 # epochs = 10
 
 # the data, shuffled and split between train and test sets
