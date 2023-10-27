@@ -10,9 +10,9 @@ batch_size = 128
 # batch_size = 256
 # batch_size = 512
 num_classes = 10
-# epochs = 12
+epochs = 12
 # epochs = 20
-epochs = 10
+# epochs = 10
 
 # the data, shuffled and split between train and test sets
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
@@ -55,8 +55,8 @@ model.add(Flatten())
 model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(num_classes, activation='softmax'))
-# model.add(Dropout(0.5))
-# model.add(Dense(num_classes, activation='gelu'))
+model.add(Dropout(0.5))
+model.add(Dense(num_classes, activation='gelu'))
 # model.add(Dropout(0.5))
 # model.add(Dense(num_classes, activation='tanh'))
 # model.add(Dropout(0.5))
