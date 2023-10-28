@@ -94,11 +94,10 @@ from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
 
 # Define lists of hyperparameters to iterate over
-batch_sizes = [128, 256, 512]
-epochs_values = [12, 20, 10]
+batch_size = 128
+epochs = 12
 activation_functions = ['relu', 'gelu', 'tanh', 'sigmoid']
 optimizers = ['Adadelta', 'Adam', 'SGD', 'Nadam', 'RMSprop']
-
 num_classes = 10
 
 # input image dimensions
@@ -128,32 +127,30 @@ print(x_test.shape[0], 'test samples')
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
-# Iterate over batch sizes, epochs, activation functions, and optimizers
-for batch_size in batch_sizes:
-    for epochs in epochs_values:
-        for activation_function in activation_functions:
-            for optimizer in optimizers:
-                print(f"Training with batch_size={batch_size}, epochs={epochs}, activation={activation_function}, optimizer={optimizer}")
+for activation_function in activation_functions:
+    for optimizer in optimizers:
+        print(f"Training with batch_size={batch_size}, epochs={epochs}, "
+              f"activation={activation_function}, optimizer={optimizer}")
 
-                model = Sequential()
-                model.add(Conv2D(32, kernel_size=(3, 3), activation=activation_function, input_shape=input_shape))
-                model.add(Conv2D(64, (3, 3), activation=activation_function))
-                model.add(MaxPooling2D(pool_size=(2, 2)))
-                model.add(Dropout(0.25))
-                model.add(Flatten())
-                model.add(Dense(128, activation=activation_function))
-                model.add(Dropout(0.5))
-                model.add(Dense(num_classes, activation='softmax'))
+        model = Sequential()
+        model.add(Conv2D(32, kernel_size=(3, 3), activation=activation_function, input_shape=input_shape))
+        model.add(Conv2D(64, (3, 3), activation=activation_function))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.25))
+        model.add(Flatten())
+        model.add(Dense(128, activation=activation_function))
+        model.add(Dropout(0.5))
+        model.add(Dense(num_classes, activation='softmax'))
 
-                model.compile(loss=keras.losses.categorical_crossentropy,
-                              optimizer=eval(f'keras.optimizers.{optimizer}()'),
-                              metrics=['accuracy'])
+        model.compile(loss=keras.losses.categorical_crossentropy,
+                      optimizer=eval(f'keras.optimizers.{optimizer}()'),
+                      metrics=['accuracy'])
 
-                model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs,
-                          verbose=1, validation_data=(x_test, y_test))
-                score = model.evaluate(x_test, y_test, verbose=0)
-                print("optimizer: ", optimizer, "activation function: ", activation_function,
-                      "epoch = ", epochs, "batch size = ",
-                      batch_size, 'Test loss:', score[0])
-                print('Test accuracy:', score[1])
-                print("")
+        model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs,
+                  verbose=1, validation_data=(x_test, y_test))
+        score = model.evaluate(x_test, y_test, verbose=0)
+        print("optimizer: ", optimizer, "activation function: ", activation_function,
+              "epoch = ", epochs, "batch size = ",
+              batch_size, 'Test loss:', score[0])
+        print('Test accuracy:', score[1])
+        print("")
