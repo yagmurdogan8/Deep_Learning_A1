@@ -97,7 +97,7 @@ from keras import backend as K
 batch_size = 128
 epochs = 12
 activation_functions = ['relu', 'gelu', 'tanh', 'sigmoid']
-optimizers = ['Adadelta', 'Adam', 'SGD', 'Nadam', 'RMSprop']
+optimizers = ['Adam', 'SGD']
 num_classes = 10
 
 # input image dimensions

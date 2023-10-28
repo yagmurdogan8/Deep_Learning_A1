@@ -100,10 +100,10 @@ from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
 
 # Define lists of hyperparameters to iterate over
-batch_sizes = [128, 256, 512]
-epochs_values = [12, 20, 10]
+batch_size = 128
+epochs = 12
 activation_functions = ['relu', 'gelu', 'tanh', 'sigmoid']
-optimizers = ['Adadelta', 'Adam', 'SGD', 'Nadam', 'RMSprop']
+optimizers = ['Adam', 'SGD']
 
 num_classes = 10
 
