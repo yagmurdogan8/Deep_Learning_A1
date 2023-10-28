@@ -65,10 +65,10 @@ model.add(Dense(num_classes, activation='softmax'))
 # model.compile(loss=keras.losses.categorical_crossentropy,
 #               optimizer=keras.optimizers.Adadelta(),
 #               metrics=['accuracy'])
-
-model.compile(loss=keras.losses.categorical_crossentropy,
-              optimizer=keras.optimizers.Adam(),
-              metrics=['accuracy'])
+#
+# model.compile(loss=keras.losses.categorical_crossentropy,
+#               optimizer=keras.optimizers.Adam(),
+#               metrics=['accuracy'])
 #
 # model.compile(loss=keras.losses.categorical_crossentropy,
 #               optimizer=keras.optimizers.SGD(),
@@ -78,9 +78,9 @@ model.compile(loss=keras.losses.categorical_crossentropy,
 #               optimizer=keras.optimizers.Nadam(),
 #               metrics=['accuracy'])
 #
-# model.compile(loss=keras.losses.categorical_crossentropy,
-#               optimizer=keras.optimizers.RMSprop(),
-#               metrics=['accuracy'])
+model.compile(loss=keras.losses.categorical_crossentropy,
+              optimizer=keras.optimizers.RMSprop(),
+              metrics=['accuracy'])
 
 model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs,
           verbose=1, validation_data=(x_test, y_test))
