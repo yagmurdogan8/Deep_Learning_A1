@@ -131,17 +131,16 @@ import keras.optimizers as opt
 import keras.regularizers as reg
 
 # Define lists of hyperparameters to iterate over
-batch_sizes = [128, 256, 512]
-epochs_values = [20, 10, 100]
+batch_size = 128
+epochs = 20
 dropout_values = [0.2, 0.4, 0.8]
-regularization_values = [0.01, 0.1, 0.005]
+regularization_values = [0.01, 0.1, None]
 activation_functions = ['relu', 'tanh', 'sigmoid', 'gelu']
-
+optimizers = [opt.SGD, opt.Adam]
 num_classes = 10
 
 # the data, shuffled and split between train and test sets
 (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
-# (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
 x_train = x_train.reshape(60000, 784)
 x_test = x_test.reshape(10000, 784)
@@ -156,35 +155,56 @@ print(x_test.shape[0], 'test samples')
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
+model = Sequential()
+model.add(Dense(512, activation='relu', input_shape=(784,)))
+model.add(Dropout(0.2))
+model.add(Dense(512, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(10, activation='softmax'))
+
+model.summary()
+
+model.compile(loss='categorical_crossentropy',
+              optimizer=opt.RMSprop(),
+              metrics=['accuracy'])
+
+history = model.fit(x_train, y_train,
+                    batch_size=batch_size, epochs=epochs,
+                    verbose=1, validation_data=(x_test, y_test))
+score = model.evaluate(x_test, y_test, verbose=0)
+
+print("INITIALLY:")
+print('Test loss:', score[0])
+print('Test accuracy:', score[1])
+
 # Iterate over batch sizes, epochs, dropout values, regularization methods, and activation functions
-for batch_size in batch_sizes:
-    for epochs in epochs_values:
-        for dropout in dropout_values:
-            for reg_value in regularization_values:
-                for activation_function in activation_functions:
-                    print(f"Training with batch_size={batch_size}, epochs={epochs}, "
-                          f"dropout={dropout}, regularization={reg_value}, "
-                          f"activation={activation_function}")
+for dropout in dropout_values:
+    for reg_value in regularization_values:
+        for activation_function in activation_functions:
+            for optimizer in optimizers:
+                print("Training with batch_size = 128, epochs = 20, "
+                      f"dropout={dropout}, regularization={reg_value}, "
+                      f"activation={activation_function}", f"optimizer = {optimizer}")
 
-                    model = Sequential()
-                    model.add(Dense(512, activation=activation_function, input_shape=(784,),
-                                    kernel_regularizer=reg.l2(reg_value)))
-                    model.add(Dropout(dropout))
-                    model.add(Dense(512, activation=activation_function, kernel_regularizer=reg.l2(reg_value)))
-                    model.add(Dropout(dropout))
-                    model.add(Dense(10, activation='softmax'))
+                model = Sequential()
+                model.add(Dense(512, activation=activation_function, input_shape=(784,),
+                                kernel_regularizer=reg.l2(reg_value)))
+                model.add(Dropout(dropout))
+                model.add(Dense(512, activation=activation_function, kernel_regularizer=reg.l2(reg_value)))
+                model.add(Dropout(dropout))
+                model.add(Dense(10, activation='softmax'))
 
-                    model.summary()
+                model.summary()
 
-                    model.compile(loss='categorical_crossentropy',
-                                  optimizer=opt.RMSprop(),
-                                  metrics=['accuracy'])
+                model.compile(loss='categorical_crossentropy',
+                              optimizer=opt.RMSprop(),
+                              metrics=['accuracy'])
 
-                    history = model.fit(x_train, y_train,
-                                        batch_size=batch_size, epochs=epochs,
-                                        verbose=1, validation_data=(x_test, y_test))
-                    score = model.evaluate(x_test, y_test, verbose=0)
+                history = model.fit(x_train, y_train,
+                                    batch_size=batch_size, epochs=epochs,
+                                    verbose=1, validation_data=(x_test, y_test))
+                score = model.evaluate(x_test, y_test, verbose=0)
 
-                    print('Test loss:', score[0])
-                    print('Test accuracy:', score[1])
-                    print("")
+                print('Test loss:', score[0])
+                print('Test accuracy:', score[1])
+                print("")
