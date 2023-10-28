@@ -119,6 +119,7 @@
 # print('Test accuracy:', score[1])
 
 from __future__ import print_function
+from __future__ import print_function
 import keras
 from keras.datasets import cifar10
 from keras.models import Sequential
@@ -151,6 +152,18 @@ img_rows, img_cols, img_channels = 32, 32, 3
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
+
+def build_model(input_shape, activation_function, dropout):
+    model = Sequential()
+    model.add(Flatten(input_shape=input_shape))
+    model.add(Dense(512, activation=activation_function))
+    model.add(Dropout(dropout))
+    model.add(Dense(512, activation=activation_function))
+    model.add(Dropout(dropout))
+    model.add(Dense(10, activation='softmax'))
+    return model
+
+
 model = Sequential()
 model.add(Flatten(input_shape=(img_rows, img_cols, img_channels)))
 model.add(Dense(512, activation='relu'))
@@ -159,11 +172,13 @@ model.add(Dense(512, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(10, activation='softmax'))
 
-model.summary()
-
 model.compile(loss='categorical_crossentropy',
               optimizer=opt.RMSprop(),
               metrics=['accuracy'])
+
+model.build((None, img_rows, img_cols, img_channels))
+
+model.summary()
 
 history = model.fit(x_train, y_train,
                     batch_size=batch_size, epochs=epochs,
@@ -183,19 +198,15 @@ for dropout in dropout_values:
                       f"dropout={dropout}, regularization={reg_value}, "
                       f"activation={activation_function}", f"optimizer = {optimizer}")
 
-                model = Sequential()
-                model.add(Dense(512, activation=activation_function,
-                                kernel_regularizer=reg.l2(reg_value)))
-                model.add(Dropout(dropout))
-                model.add(Dense(512, activation=activation_function, kernel_regularizer=reg.l2(reg_value)))
-                model.add(Dropout(dropout))
-                model.add(Dense(10, activation='softmax'))
-
-                model.summary()
+                model = build_model((img_rows, img_cols, img_channels), activation_function, dropout, reg_value)
 
                 model.compile(loss='categorical_crossentropy',
-                              optimizer=opt.RMSprop(),
+                              optimizer=optimizer(),
                               metrics=['accuracy'])
+
+                model.build((None, img_rows, img_cols, img_channels))
+
+                model.summary()
 
                 history = model.fit(x_train, y_train,
                                     batch_size=batch_size, epochs=epochs,
