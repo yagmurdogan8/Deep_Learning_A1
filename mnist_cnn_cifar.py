@@ -107,7 +107,7 @@ optimizers = ['Adadelta', 'Adam', 'SGD', 'Nadam', 'RMSprop']
 
 num_classes = 10
 
-img_rows, img_cols, img_channels = 32, 32, 3  # Three channels for CIFAR-10
+img_rows, img_cols, img_channels = 32, 32, 3
 
 # the data, shuffled and split between train and test sets
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
