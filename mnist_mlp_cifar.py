@@ -119,7 +119,6 @@
 # print('Test accuracy:', score[1])
 
 from __future__ import print_function
-from __future__ import print_function
 import keras
 from keras.datasets import cifar10
 from keras.models import Sequential
@@ -153,12 +152,12 @@ y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
 
-def build_model(input_shape, activation_function, dropout):
+def build_model(input_shape, activation_function, dropout, reg_value):
     model = Sequential()
     model.add(Flatten(input_shape=input_shape))
-    model.add(Dense(512, activation=activation_function))
+    model.add(Dense(512, activation=activation_function, kernel_regularizer=reg.l2(reg_value)))
     model.add(Dropout(dropout))
-    model.add(Dense(512, activation=activation_function))
+    model.add(Dense(512, activation=activation_function, kernel_regularizer=reg.l2(reg_value)))
     model.add(Dropout(dropout))
     model.add(Dense(10, activation='softmax'))
     return model
@@ -216,3 +215,4 @@ for dropout in dropout_values:
                 print('Test loss:', score[0])
                 print('Test accuracy:', score[1])
                 print("")
+
