@@ -129,7 +129,8 @@ for batch_size in batch_sizes:
     for epochs in epochs_values:
         for activation_function in activation_functions:
             for optimizer in optimizers:
-                print(f"Training with batch_size={batch_size}, epochs={epochs}, activation={activation_function}, optimizer={optimizer}")
+                print(f"Training with batch_size={batch_size}, epochs={epochs}, activation={activation_function}, "
+                      f"optimizer={optimizer}")
 
                 model = Sequential()
                 model.add(Conv2D(32, kernel_size=(3, 3),
